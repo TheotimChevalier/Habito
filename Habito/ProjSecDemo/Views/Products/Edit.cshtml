@@ -1,0 +1,78 @@
+﻿
+@model ProjSecDemo.Models.ProductEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="Titre" class="control-label"></label>
+                <input asp-for="Titre" class="form-control" />
+                <span asp-validation-for="Titre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fabricant" class="control-label"></label>
+                <input asp-for="Fabricant" class="form-control" />
+                <span asp-validation-for="Fabricant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InfoSup" class="control-label"></label>
+                <input asp-for="InfoSup" class="form-control" />
+                <span asp-validation-for="InfoSup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prix_Vente" class="control-label"></label>
+                <input asp-for="Prix_Vente" class="form-control" />
+                <span asp-validation-for="Prix_Vente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <br> 
+
+              <select asp-for="Type">
+                    @if (User.IsInRole("Manager_Pantalon") || (User.IsInRole("Admin")))
+                    {
+                        <option value="Pantalon">Pantalon</option>
+                    }
+                    @if (User.IsInRole("Manager_Veste") || (User.IsInRole("Admin")))
+                    {
+                        <option value="Veste">Veste</option>
+                    }
+                    @if (User.IsInRole("Manager_Sous-vetêments") || (User.IsInRole("Admin")))
+                    {
+                        <option value="Sous-vetêments">Sous-vetêments</option>
+                    }
+                </select> 
+
+                </br>
+                <span asp-validation-for="Type" class="text-danger"></span>
+                <br> </br> 
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

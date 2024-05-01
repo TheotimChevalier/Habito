@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ProjSecDemo.Data.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @if (User.IsInRole("Manager_Pantalon") || User.IsInRole("Manager_Veste") || User.IsInRole("Manager_Moteur") || User.IsInRole("Admin"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fabricant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InfoSup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prix_Vente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fabricant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InfoSup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix_Vente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+                <td>
+                    @if ((User.IsInRole("Manager_Pantalon") && item.Type == "Pantalon") || (User.IsInRole("Manager_Veste") && item.Type == "Veste") || (User.IsInRole("Manager_Sous-vetêments") && item.Type == "Sous-vetêments") || (User.IsInRole("Admin")))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a>  <text>|</text>
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a> <text>|</text>
+                    }
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> 
+
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
