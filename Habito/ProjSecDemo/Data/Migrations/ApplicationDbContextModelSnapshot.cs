@@ -349,8 +349,8 @@ modelBuilder.Entity<IdentityUser>().HasData(
         Id = "1",
         UserName = "Robert",
         NormalizedUserName = "ROBERT",
-        Email = "john@example.com",
-        NormalizedEmail = "JOHN@EXAMPLE.COM",
+        Email = "Robert@example.com",
+        NormalizedEmail = "ROBERT@EXAMPLE.COM",
         EmailConfirmed = true,
         PasswordHash = hashedPassword,
         SecurityStamp = string.Empty
