@@ -331,39 +331,7 @@ namespace ProjSecDemo.Data.Migrations
                         .IsRequired();
                 });
 
-modelBuilder.Entity<IdentityRole>().HasData(
-new IdentityRole
-    {
-        Id = "1",
-        Name = "Admin",
-        NormalizedName = "ADMIN"
-    }
-);
 
-var passwordHasher = new PasswordHasher<IdentityUser>();
-var hashedPassword = passwordHasher.HashPassword(null, "Azerty.1");
-
-modelBuilder.Entity<IdentityUser>().HasData(
-    new IdentityUser
-    {
-        Id = "1",
-        UserName = "Robert",
-        NormalizedUserName = "ROBERT",
-        Email = "Robert@example.com",
-        NormalizedEmail = "ROBERT@EXAMPLE.COM",
-        EmailConfirmed = true,
-        PasswordHash = hashedPassword,
-        SecurityStamp = string.Empty
-    }
-);
-
-modelBuilder.Entity<IdentityUserRole<string>>().HasData(
-    new IdentityUserRole<string>
-    {
-        UserId = "1",
-        RoleId = "1"
-    }
-);
 
 
 
